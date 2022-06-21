@@ -26,7 +26,7 @@ const appValidationSchema = Yup.object().shape({
   requestedDate: Yup.date().required().label("Requested_date"),
   EffectedDate: Yup.date().required().label("Effected_date"),
   doctorDescription: Yup.string().required().label("Doctor_description"),
-  other_recomendation: Yup.string().required().label("Other_recomendation"),
+  other_recomondation: Yup.string().required().label("Other_recomondation"),
   recemendedDateDuration: Yup.number().required().label("Duration"),
   DoctorName: Yup.string().required().label("Doctor_Name"),
   Designation: Yup.string().required().label("Designation"),
@@ -123,6 +123,7 @@ const Req_medical_report = ({ navigation }) => {
       .then(response => {
         console.log(JSON.stringify(response.data))
       })
+      .catch(err=>console.log(err))
   };
 
 
@@ -137,7 +138,7 @@ const Req_medical_report = ({ navigation }) => {
         <Text >First Name</Text>
         <Formik
           initialValues={{ firstname: '', lastname: '', OPD_no: '', reciep_no: '', workingplace: '', address: '', requestedDate: '', EffectedDate: '', doctorDescription: '', other_recomondation: '', recemendedDateDuration: '', DoctorName: '', Designation: '', isseedDate: '' }}
-          onSubmit={(values) => postData(values)}
+          onSubmit={(values)=>postData(values)}
           // onSubmit={()=>navigation.navigate('Payment')}
           validationSchema={appValidationSchema}
         >
