@@ -1,5 +1,5 @@
 const router= require("express").Router();
-let Patient=require("../modles/Patient.js");
+let PhysicalAppintment=require("../modles/PhysicalAppintment.js");
 router.route("/add").post((req,res)=>{
 
     const specialization=req.body.specialization;
@@ -12,7 +12,7 @@ router.route("/add").post((req,res)=>{
     const mobileno=Number(req.body.mobileno);
     const address=req.body.address;
 
-    const newPatient=new Patient({
+    const newphysicalAppintment=new PhysicalAppintment({
 
         specialization,
         doctorname,
@@ -26,7 +26,7 @@ router.route("/add").post((req,res)=>{
     })
 
 //data add 
-    newPatient.save().then(()=>{
+    newphysicalAppintment.save().then(()=>{
         res.json("Patient Added")
     }).catch((err)=>{
         console.log(err);
@@ -36,8 +36,8 @@ router.route("/add").post((req,res)=>{
 //read data
 router.route("/").get((req,res)=>{
 
-    Patient.find().then((patients)=>{
-        res.json(patients)
+    PhysicalAppintment.find().then((physicalAppoinments)=>{
+        res.json(physicalAppoinments)
     }).catch((err)=>{
         console.log(err);
     })
@@ -47,7 +47,7 @@ router.route("/update/:id").put(async(req,res)=>{
     let userId=req.params.id;
     const{specialization,doctorname,date,charges,firstname,lastname,age,mobileno,address}=req.body;
 
-    const updatePatient={
+    const updatephysicalAppoinment={
         specialization,
         doctorname,
         date,
@@ -59,7 +59,7 @@ router.route("/update/:id").put(async(req,res)=>{
         address
     }
 
-    const update=await Patient.findByIdAndUpdate(userId,updatePatient).then(()=>{
+    const update=await PhysicalAppintment.findByIdAndUpdate(userId,updatephysicalAppoinment).then(()=>{
         res.status(200).send({status:"user update"})
     }).catch((err)=>{
         res.status(500).send({status:"error with updating data",error:err.message});
@@ -70,7 +70,7 @@ router.route("/update/:id").put(async(req,res)=>{
 router.route("/delete/:id").delete(async(req,res)=>{
     let userId = req.params.id;
 
-    await Patient.findByIdAndDelete(userId)
+    await PhysicalAppintment.findByIdAndDelete(userId)
     .then(()=>{
         res.status(200).send({status:"User deleted"});
     }).catch((err)=>{
@@ -91,4 +91,12 @@ router.route("/get/:id").get(async(req,res)=>{
     })
 })
 
+router.route("/doctor_appoinment/:id").get((req,res)=>{
+    let doctor_appoinment=req.params.id;
+    PhysicalAppintment.find({ _id:doctor_appoinment }).then((physicalAppoinments)=>{
+        res.json(physicalAppoinments)
+    }).catch((err)=>{
+        console.log(err);
+    })
+})
 module.exports=router;

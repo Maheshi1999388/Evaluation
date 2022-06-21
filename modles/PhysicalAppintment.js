@@ -2,7 +2,7 @@ const mongoose=require('mongoose');
 
 const Schema=mongoose.Schema;
 
-const patientSchema=new Schema({
+const physicalAppointmantSchema=new Schema({
    
     specialization:{
         type:String,
@@ -50,6 +50,6 @@ const patientSchema=new Schema({
     }
 })
 
-const Patient=mongoose.model("Student",patientSchema);
+const PhysicalAppintment=mongoose.model("physicalAppointment",physicalAppointmantSchema);
 
-module.exports=Patient;
+module.exports=PhysicalAppintment;

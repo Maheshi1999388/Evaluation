@@ -3,27 +3,7 @@ const mongoose=require('mongoose');
 const Schema=mongoose.Schema;
 
 const doctorSchema=new Schema({
-    doctorname:{
-        type:String,
-        required: true
-    },
-   
-    specialization:{
-        type:String,
-        required: true
-    },
-
-
-    date:{
-        type:Date,
-        required: true
-    },
-
-    charges:{
-        type:Number,
-        required: true
-    },
-
+    
     firstname:{
         type:String,
         required: true
@@ -33,21 +13,50 @@ const doctorSchema=new Schema({
         type:String,
         required: true
     },
-
-    age:{
-        type:Number,
+    title:{
+        type:String,
         required: true
     },
-
-    mobileno:{
-        type:Number,
+    workingHospital:{
+        type:String,
         required: true
     },
-
     address:{
         type:String,
         required: true
-    }
+    },
+    university:{
+        type:String,
+        required: true
+    },
+    degree:{
+        type:String,
+        required: true
+    },
+    email:{
+        type:String,
+        required: true
+    },
+    password:{
+        type:String,
+        required: true
+    },
+    category:{
+        type:String,
+        required: true
+    },
+    registrationNumber:{
+        type:String,
+        required: true
+    },
+    chargePerPatient:{
+        type:Number,
+        required: true
+    },
+    mobileno:{
+        type:Number,
+        required: true
+    } 
 })
 
 const Doctor=mongoose.model("Doctor",doctorSchema);
